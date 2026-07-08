@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<title>KARV · KV_COLLAB_BLING</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Manrope:wght@400;500;600;700&amp;family=Cormorant+Garamond:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -20,42 +16,51 @@
   a:hover { color: #995f20; }
   img { display: block; max-width: 100%; }
   ::selection { background: #B77A32; color: #F7F1E8; }
+
+  /* scroll reveal */
   [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .75s cubic-bezier(.2,.6,.2,1), transform .75s cubic-bezier(.2,.6,.2,1); }
   [data-reveal].is-in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; } }
+
+  /* hover states (base styles are inline; these override on hover) */
+  .k-cta-header:hover { background: #a26a27 !important; }
+  .k-cta-primary:hover { background: #a26a27 !important; transform: translateY(-3px); box-shadow: 0 18px 38px -14px rgba(17,17,17,0.5) !important; }
+  .k-cta-offer:hover { background: #c98a3e !important; transform: translateY(-3px); box-shadow: 0 20px 42px -14px rgba(0,0,0,0.6) !important; }
+  .k-arrow:hover { gap: 16px !important; border-color: #B77A32 !important; }
+  .k-final:hover { gap: 16px !important; }
+  .k-footwa:hover { color: #E8D8C2 !important; }
+  .k-qr:hover { transform: translateY(-3px); }
+  .k-aud:hover { transform: translateY(-5px); box-shadow: inset 1.5px 1.5px 0 rgba(255,255,255,0.6), inset -1.5px -1.5px 0 rgba(0,0,0,0.06), 0 6px 12px rgba(17,17,17,0.06), 0 34px 66px -28px rgba(17,17,17,0.3) !important; }
+  .k-detail:hover { transform: translateY(-5px); box-shadow: inset 1.5px 1.5px 0 rgba(255,255,255,0.6), inset -1.5px -1.5px 0 rgba(0,0,0,0.06), 0 6px 12px rgba(17,17,17,0.06), 0 36px 70px -28px rgba(17,17,17,0.32) !important; }
+  .k-detail:hover img { transform: scale(1.02); }
+  .k-spec:hover { transform: translateY(-4px); box-shadow: inset 1.5px 1.5px 0 rgba(255,255,255,0.6), inset -1.5px -1.5px 0 rgba(0,0,0,0.06), 0 6px 12px rgba(17,17,17,0.05), 0 30px 60px -28px rgba(17,17,17,0.28) !important; }
+
   @media (max-width: 860px) {
     #karv-nav { display: none !important; }
     #karv-header-inner { padding: 0 20px !important; }
     #karv-logo-sep { display: none !important; }
     #karv-bg-video { display: none !important; }
     #karv-atmos-overlay { background: rgba(247,241,232,0.87) !important; }
+    #karv-qr { position: static !important; margin-top: 8px; }
   }
   @media (max-width: 620px) {
     #karv-header-cta { padding: 11px 16px !important; }
   }
 </style>
-</helmet>
-
-<template id="__bundler_thumbnail" data-bg-color="#111111">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1200" height="800" fill="#111111"/>
-    <text x="600" y="410" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="150" letter-spacing="20" fill="#B77A32">KARV</text>
-    <rect x="505" y="470" width="190" height="4" fill="#B77A32"/>
-    <text x="600" y="545" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" letter-spacing="10" fill="#8A8178">KV_COLLAB_BLING</text>
-  </svg>
-</template>
+</head>
+<body>
 
 <div id="karv-atmos" aria-hidden="true" style="position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden; background:url('assets/atmosfera.png') center top / cover no-repeat #F7F1E8;">
-  <video id="karv-bg-video" src="assets/bg-main.mp4" autoplay="" muted="" playsinline="" loop="" preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 40%;"></video>
+  <video id="karv-bg-video" src="assets/bg-main.mp4" autoplay muted playsinline loop preload="auto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 40%;"></video>
   <div id="karv-atmos-overlay" style="position:absolute; inset:0; background:rgba(247,241,232,0.86);"></div>
 </div>
 
-<div style="width: 100%; overflow-x: hidden; opacity: 0.98">
+<div style="width:100%; overflow-x:hidden; opacity:0.98;">
 
   <!-- HEADER -->
-  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(247,241,232,0.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(138,129,120,0.18)">
+  <header style="position:fixed; top:0; left:0; right:0; z-index:50; background:rgba(247,241,232,0.82); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid rgba(138,129,120,0.18);">
     <div id="karv-header-inner" style="max-width:1240px; margin:0 auto; padding:0 40px; height:76px; display:flex; align-items:center; gap:22px;">
-      <a href="#top" style="font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 30px; letter-spacing: 0.14em; color: #836541; line-height: 1">KARV</a>
+      <a href="#top" style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:30px; letter-spacing:0.14em; color:#836541; line-height:1;">KARV</a>
       <span id="karv-logo-sep" style="font-size:11px; letter-spacing:0.3em; color:#8A8178; font-weight:600;">KV_COLLAB_BLING</span>
       <nav id="karv-nav" style="margin-left:auto; display:flex; align-items:center; gap:32px;">
         <a href="#collab" style="color:#242424; font-size:13.5px; font-weight:600; letter-spacing:0.01em;">A Collab</a>
@@ -65,7 +70,7 @@
         <a href="#oferta" style="color:#242424; font-size:13.5px; font-weight:600; letter-spacing:0.01em;">Oferta</a>
         <a href="#contato" style="color:#242424; font-size:13.5px; font-weight:600; letter-spacing:0.01em;">Contato</a>
       </nav>
-      <a id="karv-header-cta" href="{{ waHref }}" target="_blank" rel="noopener" style="margin-left: auto; display: inline-flex; align-items: center; gap: 9px; color: #F7F1E8; font-weight: 700; font-size: 13.5px; padding: 12px 22px; border-radius: 8px; transition: background .18s ease; box-shadow: 0px 4px 12px 0px #564F256B; background-color: #B77A32" style-hover="background:#a26a27;">Entrar na collab</a>
+      <a id="karv-header-cta" class="k-cta-header" href="https://wa.me/5511945197063?text=Tenho%20interesse%20na%20KV_COLLAB_BLING" target="_blank" rel="noopener noreferrer" style="margin-left:auto; display:inline-flex; align-items:center; gap:9px; color:#F7F1E8; font-weight:700; font-size:13.5px; padding:12px 22px; border-radius:8px; transition:background .18s ease; box-shadow:0px 4px 12px 0px #564F256B; background-color:#B77A32;">Entrar na collab</a>
     </div>
   </header>
 
@@ -73,23 +78,23 @@
 
   <!-- HERO -->
   <section style="max-width:1300px; margin:0 auto; padding:clamp(16px,2.4vw,32px) clamp(20px,3vw,40px) clamp(56px,7vw,104px);">
-    <div data-reveal="" style="position:relative; border-radius:22px; overflow:hidden; background:#111; border:1px solid rgba(0,0,0,0.16); box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.1), inset 0 0 0 1px rgba(183,122,50,0.12), 0 4px 10px rgba(17,17,17,0.08), 0 40px 100px -52px rgba(17,17,17,0.6);">
+    <div data-reveal style="position:relative; border-radius:22px; overflow:hidden; background:#111; border:1px solid rgba(0,0,0,0.16); box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.1), inset 0 0 0 1px rgba(183,122,50,0.12), 0 4px 10px rgba(17,17,17,0.08), 0 40px 100px -52px rgba(17,17,17,0.6);">
       <img src="assets/hero.jpg" alt="Poltrona KV_COLLAB_BLING em ambiente" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
       <div style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(17,17,17,0.72) 0%, rgba(17,17,17,0.5) 30%, rgba(17,17,17,0.14) 52%, rgba(17,17,17,0) 70%);"></div>
-      <div style="position: relative; display: flex; flex-wrap: wrap; padding: clamp(28px,4vw,64px); min-height: min(78vh,660px); align-items: center; border-width: 0px; border-style: solid; border-color: #000000; margin-top: 6px; margin-right: 6px; margin-bottom: 6px; margin-left: 6px; border-radius: 6px">
+      <div style="position:relative; display:flex; flex-wrap:wrap; padding:clamp(28px,4vw,64px); min-height:min(78vh,660px); align-items:center; margin:6px; border-radius:6px;">
         <div style="flex:1 1 440px; max-width:500px;">
           <div style="display:inline-flex; align-items:center; gap:10px; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#E8D8C2; margin-bottom:26px;">
             <span style="width:24px; height:1px; background:#B77A32;"></span>EDIÇÃO LIMITADA
           </div>
           <h1 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(34px,4.6vw,54px); line-height:1.0; letter-spacing:-0.03em; margin:0 0 22px; color:#F7F1E8; word-break:keep-all;">KV_COLLAB_<wbr>BLING</h1>
           <p style="font-family:'Cormorant Garamond', serif; font-weight:500; font-size:clamp(21px,2.4vw,29px); color:#E8D8C2; margin:0 0 20px; line-height:1.28; max-width:24ch;">Uma poltrona de presença para espaços que já têm identidade.</p>
-          <p style="font-size: 16px; line-height: 1.62; color: #FAD5A4FD; margin: 0 0 38px; max-width: 42ch; opacity: 1">A KV_COLLAB_BLING une conforto, arte autoral e impacto visual em uma peça criada para ambientes que vivem de experiência, imagem e memória.</p>
+          <p style="font-size:16px; line-height:1.62; color:#FAD5A4FD; margin:0 0 38px; max-width:42ch;">A KV_COLLAB_BLING une conforto, arte autoral e impacto visual em uma peça criada para ambientes que vivem de experiência, imagem e memória.</p>
           <div style="display:flex; flex-direction:column; align-items:flex-start; gap:30px;">
             <div style="display:flex; flex-direction:column; gap:7px;">
               <span style="font-size:11px; color:rgba(247,241,232,0.6); letter-spacing:0.22em; text-transform:uppercase;">Entrada na collab</span>
               <span style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(28px,3.2vw,34px); color:#F7F1E8; letter-spacing:-0.01em;">R$ 600,00</span>
             </div>
-            <a href="{{ waHref }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 11px; background: #B77A32; color: #F7F1E8; font-weight: 700; font-size: 15px; padding: 17px 30px; border-radius: 10px; box-shadow: 0px 10px 26px -14px #000000; transition: transform .25s ease-out, background .25s ease-out, box-shadow .25s ease-out" style-hover="background:#a26a27; transform:translateY(-3px); box-shadow:0 18px 38px -14px rgba(17,17,17,0.5);">Quero entrar na collab</a>
+            <a class="k-cta-primary" href="https://wa.me/5511945197063?text=Tenho%20interesse%20na%20KV_COLLAB_BLING" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:11px; background:#B77A32; color:#F7F1E8; font-weight:700; font-size:15px; padding:17px 30px; border-radius:10px; box-shadow:0px 10px 26px -14px #000000; transition:transform .25s ease-out, background .25s ease-out, box-shadow .25s ease-out;">Quero entrar na collab</a>
           </div>
         </div>
         <div style="flex:1 1 300px;"></div>
@@ -102,7 +107,7 @@
   </section>
 
   <!-- O QUE É / A COLLAB -->
-  <section id="collab" data-reveal="" style="scroll-margin-top:92px; max-width:1000px; margin:0 auto; padding:clamp(64px,9vw,140px) clamp(20px,3vw,40px); text-align:center;">
+  <section id="collab" data-reveal style="scroll-margin-top:92px; max-width:1000px; margin:0 auto; padding:clamp(64px,9vw,140px) clamp(20px,3vw,40px); text-align:center;">
     <div style="display:inline-flex; align-items:center; gap:10px; font-size:11px; font-weight:700; letter-spacing:0.32em; color:#B77A32; margin-bottom:28px;">
       <span style="width:24px; height:1px; background:#B77A32;"></span>O QUE É<span style="width:24px; height:1px; background:#B77A32;"></span>
     </div>
@@ -114,7 +119,7 @@
   </section>
 
   <!-- MATÉRIA / CONCEITO -->
-  <section data-reveal="" style="max-width:1240px; margin:0 auto; padding:0 clamp(20px,3vw,40px) clamp(64px,9vw,140px);">
+  <section data-reveal style="max-width:1240px; margin:0 auto; padding:0 clamp(20px,3vw,40px) clamp(64px,9vw,140px);">
     <div style="display:flex; flex-wrap:wrap; align-items:stretch; gap:clamp(32px,4.5vw,72px);">
       <div style="flex:1 1 420px; min-width:300px; position:relative; border-radius:18px; overflow:hidden; background:#111; border:1px solid rgba(0,0,0,0.16); box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.1), inset 0 0 0 1px rgba(183,122,50,0.14), 0 3px 8px rgba(17,17,17,0.07), 0 34px 80px -48px rgba(17,17,17,0.6); min-height:340px;">
         <img src="assets/textura-clean.jpg" alt="Close-up do relevo 3D do tecido preto" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
@@ -132,11 +137,11 @@
   </section>
 
   <!-- PROCESSO ARTÍSTICO -->
-  <section id="peca" style="scroll-margin-top: 92px; opacity: 1; background-color: #948C7F26">
+  <section id="peca" style="scroll-margin-top:92px; background-color:#948C7F26;">
     <div style="max-width:1240px; margin:0 auto; padding:clamp(64px,9vw,132px) clamp(20px,3vw,40px);">
-      <div data-reveal="" style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,5vw,80px);">
+      <div data-reveal style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(36px,5vw,80px);">
         <div style="flex:1 1 440px; min-width:300px; border-radius:18px; overflow:hidden; background:#111; border:1px solid rgba(0,0,0,0.16); box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.1), inset 0 0 0 1px rgba(183,122,50,0.14), 0 3px 8px rgba(17,17,17,0.07), 0 34px 80px -48px rgba(17,17,17,0.6);">
-          <video src="assets/processo.mp4" autoplay="" muted="" loop="" playsinline="" preload="metadata" style="width: 610px; height: 456px; display: block; object-fit: cover; aspect-ratio: 16/10; border-radius: 2px; box-shadow: 0px 4px 12px 0px #564F256B"></video>
+          <video src="assets/processo.mp4" autoplay muted loop playsinline preload="metadata" style="width:100%; height:100%; display:block; object-fit:cover; aspect-ratio:16/10;"></video>
         </div>
         <div style="flex:1 1 320px; min-width:280px;">
           <div style="display:inline-flex; align-items:center; gap:10px; font-size:11px; font-weight:700; letter-spacing:0.32em; color:#B77A32; margin-bottom:24px;">
@@ -144,7 +149,7 @@
           </div>
           <h2 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(28px,3.8vw,46px); line-height:1.04; letter-spacing:-0.025em; margin:0 0 24px; text-wrap:balance;">Do traço à presença no ambiente.</h2>
           <p style="font-size:17px; line-height:1.7; color:#544f48; margin:0 0 36px; max-width:46ch; text-wrap:pretty;">A arte nasce do gesto manual e ganha escala na peça. O resultado é uma poltrona que carrega atitude sem perder função, conforto e leitura arquitetônica.</p>
-          <a href="#detalhes" style="display: inline-flex; align-items: center; gap: 12px; color: #242424; font-weight: 700; font-size: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(36,36,36,0.25); transition: gap .18s ease, border-color .18s ease; box-shadow: 0px 4px 12px 0px #564F256B" style-hover="gap:16px; border-color:#B77A32;">Ver detalhes da peça <span style="color:#B77A32;">→</span></a>
+          <a class="k-arrow" href="#detalhes" style="display:inline-flex; align-items:center; gap:12px; color:#242424; font-weight:700; font-size:15px; padding-bottom:10px; border-bottom:1px solid rgba(36,36,36,0.25); transition:gap .18s ease, border-color .18s ease;">Ver detalhes da peça <span style="color:#B77A32;">→</span></a>
         </div>
       </div>
     </div>
@@ -152,27 +157,50 @@
 
   <!-- PARA QUEM É -->
   <section id="paraquem" style="scroll-margin-top:92px; max-width:1240px; margin:0 auto; padding:clamp(64px,9vw,140px) clamp(20px,3vw,40px);">
-    <div data-reveal="" style="text-align:center; margin-bottom:clamp(44px,5vw,72px);">
+    <div data-reveal style="text-align:center; margin-bottom:clamp(44px,5vw,72px);">
       <div style="display:inline-flex; align-items:center; gap:10px; font-size:11px; font-weight:700; letter-spacing:0.32em; color:#B77A32; margin-bottom:24px;">
         <span style="width:24px; height:1px; background:#B77A32;"></span>PARA QUEM É<span style="width:24px; height:1px; background:#B77A32;"></span>
       </div>
-      <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(28px,4vw,48px); line-height: 1.04; letter-spacing: -0.025em; margin: 0 auto; max-width: 18ch; text-wrap: balance; box-shadow: 0px 4px 12px 0px #564F256C">Ambientes comerciais com identidade forte.</h2>
+      <h2 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(28px,4vw,48px); line-height:1.04; letter-spacing:-0.025em; margin:0 auto; max-width:18ch; text-wrap:balance;">Ambientes comerciais com identidade forte.</h2>
     </div>
-    <div data-reveal-group="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:clamp(14px,1.6vw,20px);">
-      <sc-for list="{{ audiences }}" as="a" hint-placeholder-count="6">
-        <div data-reveal="" style="background: #F7F1E8; border: 1px solid rgba(0,0,0,0.07); border-radius: 18px; padding: clamp(28px,3vw,40px) clamp(26px,2.6vw,36px); box-shadow: 1.5px 1.5px 0px 0px #564F256B; transition: transform .3s ease-out, box-shadow .3s ease-out; will-change: transform" style-hover="transform:translateY(-5px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.6), inset -1.5px -1.5px 0 rgba(0,0,0,0.06), 0 6px 12px rgba(17,17,17,0.06), 0 34px 66px -28px rgba(17,17,17,0.3);">
-          <div style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:22px; color:#B77A32; margin-bottom:18px;">{{ a.num }}</div>
-          <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:20px; margin:0 0 12px; letter-spacing:-0.01em;">{{ a.title }}</h3>
-          <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">{{ a.desc }}</p>
-        </div>
-      </sc-for>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:clamp(14px,1.6vw,20px);">
+      <div class="k-aud" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:clamp(28px,3vw,40px) clamp(26px,2.6vw,36px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 18px 40px -26px rgba(17,17,17,0.2); transition:transform .3s ease-out, box-shadow .3s ease-out; will-change:transform;">
+        <div style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:22px; color:#B77A32; margin-bottom:18px;">01</div>
+        <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:20px; margin:0 0 12px; letter-spacing:-0.01em;">Barbearias</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">Ambientes com estética própria e atendimento de presença.</p>
+      </div>
+      <div class="k-aud" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:clamp(28px,3vw,40px) clamp(26px,2.6vw,36px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 18px 40px -26px rgba(17,17,17,0.2); transition:transform .3s ease-out, box-shadow .3s ease-out; will-change:transform;">
+        <div style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:22px; color:#B77A32; margin-bottom:18px;">02</div>
+        <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:20px; margin:0 0 12px; letter-spacing:-0.01em;">Studios de tattoo</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">Espaços onde arte, permanência e identidade já fazem parte da experiência.</p>
+      </div>
+      <div class="k-aud" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:clamp(28px,3vw,40px) clamp(26px,2.6vw,36px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 18px 40px -26px rgba(17,17,17,0.2); transition:transform .3s ease-out, box-shadow .3s ease-out; will-change:transform;">
+        <div style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:22px; color:#B77A32; margin-bottom:18px;">03</div>
+        <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:20px; margin:0 0 12px; letter-spacing:-0.01em;">Creators</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">Cenários que precisam render imagem, vídeo e reconhecimento.</p>
+      </div>
+      <div class="k-aud" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:clamp(28px,3vw,40px) clamp(26px,2.6vw,36px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 18px 40px -26px rgba(17,17,17,0.2); transition:transform .3s ease-out, box-shadow .3s ease-out; will-change:transform;">
+        <div style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:22px; color:#B77A32; margin-bottom:18px;">04</div>
+        <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:20px; margin:0 0 12px; letter-spacing:-0.01em;">Lounges</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">Áreas de espera com conforto, impacto e memória visual.</p>
+      </div>
+      <div class="k-aud" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:clamp(28px,3vw,40px) clamp(26px,2.6vw,36px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 18px 40px -26px rgba(17,17,17,0.2); transition:transform .3s ease-out, box-shadow .3s ease-out; will-change:transform;">
+        <div style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:22px; color:#B77A32; margin-bottom:18px;">05</div>
+        <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:20px; margin:0 0 12px; letter-spacing:-0.01em;">Lojas conceito</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">Pontos de venda onde o mobiliário também comunica posicionamento.</p>
+      </div>
+      <div class="k-aud" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:clamp(28px,3vw,40px) clamp(26px,2.6vw,36px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 18px 40px -26px rgba(17,17,17,0.2); transition:transform .3s ease-out, box-shadow .3s ease-out; will-change:transform;">
+        <div style="font-family:'Cormorant Garamond', serif; font-weight:700; font-size:22px; color:#B77A32; margin-bottom:18px;">06</div>
+        <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:20px; margin:0 0 12px; letter-spacing:-0.01em;">Eventos</h3>
+        <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">Ambientes temporários que precisam marcar presença rapidamente.</p>
+      </div>
     </div>
   </section>
 
   <!-- DETALHES DA PEÇA -->
-  <section id="detalhes" style="scroll-margin-top: 92px; background-color: #948C7F26">
+  <section id="detalhes" style="scroll-margin-top:92px; background-color:#948C7F26;">
     <div style="max-width:1240px; margin:0 auto; padding:clamp(64px,9vw,140px) clamp(20px,3vw,40px);">
-      <div data-reveal="" style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:clamp(40px,5vw,64px);">
+      <div data-reveal style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:clamp(40px,5vw,64px);">
         <div>
           <div style="display:inline-flex; align-items:center; gap:10px; font-size:11px; font-weight:700; letter-spacing:0.32em; color:#B77A32; margin-bottom:20px;">
             <span style="width:24px; height:1px; background:#B77A32;"></span>DETALHES DA PEÇA
@@ -180,59 +208,115 @@
           <h2 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(28px,4vw,48px); line-height:1.04; letter-spacing:-0.025em; margin:0; max-width:16ch; text-wrap:balance;">Cada elemento constrói a presença.</h2>
         </div>
       </div>
-      <div data-reveal-group="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:clamp(20px,2.4vw,32px); margin-bottom:clamp(28px,3vw,44px);">
-        <sc-for list="{{ details }}" as="d" hint-placeholder-count="3">
-          <div data-reveal="" style="background: #F7F1E8; border: 1px solid rgba(0,0,0,0.07); border-radius: 18px; overflow: hidden; box-shadow: 1.5px 1.5px 0px 0px #564F256B; transition: transform .3s ease-out, box-shadow .3s ease-out" style-hover="transform:translateY(-5px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.6), inset -1.5px -1.5px 0 rgba(0,0,0,0.06), 0 6px 12px rgba(17,17,17,0.06), 0 36px 70px -28px rgba(17,17,17,0.32);">
-            <div style="aspect-ratio:3/4; overflow:hidden; background:#111;">
-              <img src="{{ d.img }}" alt="{{ d.title }}" style="width:100%; height:100%; object-fit:cover; transition:transform .7s ease-out;" style-hover="transform:scale(1.02);">
-            </div>
-            <div style="padding:24px 26px 30px;">
-              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
-                <span style="font-size:10.5px; font-weight:700; letter-spacing:0.28em; color:#8A8178;">{{ d.cat }}</span>
-                <span style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:16px; color:#B77A32;">{{ d.num }}</span>
-              </div>
-              <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:21px; margin:0 0 10px; letter-spacing:-0.01em;">{{ d.title }}</h3>
-              <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">{{ d.desc }}</p>
-            </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:clamp(20px,2.4vw,32px); margin-bottom:clamp(28px,3vw,44px);">
+        <div class="k-detail" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; overflow:hidden; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 20px 44px -26px rgba(17,17,17,0.24); transition:transform .3s ease-out, box-shadow .3s ease-out;">
+          <div style="aspect-ratio:3/4; overflow:hidden; background:#111;">
+            <img src="assets/dragao-lateral.jpg" alt="Arte lateral" style="width:100%; height:100%; object-fit:cover; transition:transform .7s ease-out;">
           </div>
-        </sc-for>
+          <div style="padding:24px 26px 30px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+              <span style="font-size:10.5px; font-weight:700; letter-spacing:0.28em; color:#8A8178;">ARTE AUTORAL</span>
+              <span style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:16px; color:#B77A32;">01</span>
+            </div>
+            <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:21px; margin:0 0 10px; letter-spacing:-0.01em;">Arte lateral</h3>
+            <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">Dragão autoral aplicado como elemento gráfico de presença.</p>
+          </div>
+        </div>
+        <div class="k-detail" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; overflow:hidden; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 20px 44px -26px rgba(17,17,17,0.24); transition:transform .3s ease-out, box-shadow .3s ease-out;">
+          <div style="aspect-ratio:3/4; overflow:hidden; background:#111;">
+            <img src="assets/textura-clean.jpg" alt="Textura 3D inspirada em escamas" style="width:100%; height:100%; object-fit:cover; transition:transform .7s ease-out;">
+          </div>
+          <div style="padding:24px 26px 30px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+              <span style="font-size:10.5px; font-weight:700; letter-spacing:0.28em; color:#8A8178;">MATÉRIA · ESCAMAS</span>
+              <span style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:16px; color:#B77A32;">02</span>
+            </div>
+            <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:21px; margin:0 0 10px; letter-spacing:-0.01em;">Textura 3D inspirada em escamas</h3>
+            <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">O revestimento preto em relevo tridimensional estabelece uma conexão visual sutil com a escama do dragão, ampliando a força da peça com sofisticação e coerência material.</p>
+          </div>
+        </div>
+        <div class="k-detail" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; overflow:hidden; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 20px 44px -26px rgba(17,17,17,0.24); transition:transform .3s ease-out, box-shadow .3s ease-out;">
+          <div style="aspect-ratio:3/4; overflow:hidden; background:#111;">
+            <img src="assets/vista-45.jpg" alt="Vista 45°" style="width:100%; height:100%; object-fit:cover; transition:transform .7s ease-out;">
+          </div>
+          <div style="padding:24px 26px 30px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;">
+              <span style="font-size:10.5px; font-weight:700; letter-spacing:0.28em; color:#8A8178;">FORMA</span>
+              <span style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:16px; color:#B77A32;">03</span>
+            </div>
+            <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:21px; margin:0 0 10px; letter-spacing:-0.01em;">Vista 45°</h3>
+            <p style="font-size:14.5px; line-height:1.6; color:#6b665f; margin:0;">Volume robusto, braços amplos e silhueta de presença.</p>
+          </div>
+        </div>
       </div>
-      <div data-reveal-group="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:clamp(16px,1.8vw,22px); padding-top:clamp(28px,3vw,44px); border-top:1px solid rgba(138,129,120,0.28);">
-        <sc-for list="{{ specs }}" as="s" hint-placeholder-count="3">
-          <div data-reveal="" style="background: #F7F1E8; border: 1px solid rgba(0,0,0,0.07); border-radius: 18px; padding: 28px 26px; box-shadow: 1.5px 1.5px 0px 0px #564F256B; transition: transform .3s ease-out, box-shadow .3s ease-out" style-hover="transform:translateY(-4px); box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.6), inset -1.5px -1.5px 0 rgba(0,0,0,0.06), 0 6px 12px rgba(17,17,17,0.05), 0 30px 60px -28px rgba(17,17,17,0.28);">
-            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-              <span style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:16px; color:#B77A32;">{{ s.num }}</span>
-              <span style="width:20px; height:1px; background:#B77A32;"></span>
-            </div>
-            <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:18px; margin:0 0 8px; letter-spacing:-0.01em;">{{ s.title }}</h3>
-            <p style="font-size:14px; line-height:1.6; color:#6b665f; margin:0;">{{ s.desc }}</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:clamp(16px,1.8vw,22px); padding-top:clamp(28px,3vw,44px); border-top:1px solid rgba(138,129,120,0.28);">
+        <div class="k-spec" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:28px 26px; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 16px 34px -24px rgba(17,17,17,0.18); transition:transform .3s ease-out, box-shadow .3s ease-out;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:16px; color:#B77A32;">04</span>
+            <span style="width:20px; height:1px; background:#B77A32;"></span>
           </div>
-        </sc-for>
+          <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:18px; margin:0 0 8px; letter-spacing:-0.01em;">Acabamento contrastante</h3>
+          <p style="font-size:14px; line-height:1.6; color:#6b665f; margin:0;">Filetes em tom quente que reforçam profundidade visual.</p>
+        </div>
+        <div class="k-spec" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:28px 26px; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 16px 34px -24px rgba(17,17,17,0.18); transition:transform .3s ease-out, box-shadow .3s ease-out;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:16px; color:#B77A32;">05</span>
+            <span style="width:20px; height:1px; background:#B77A32;"></span>
+          </div>
+          <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:18px; margin:0 0 8px; letter-spacing:-0.01em;">Base sólida</h3>
+          <p style="font-size:14px; line-height:1.6; color:#6b665f; margin:0;">Pés pretos discretos, mantendo estabilidade e peso visual.</p>
+        </div>
+        <div class="k-spec" data-reveal style="background:#F7F1E8; border:1px solid rgba(0,0,0,0.07); border-radius:18px; padding:28px 26px; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,0.5), inset -1.5px -1.5px 0 rgba(0,0,0,0.05), 0 2px 4px rgba(17,17,17,0.04), 0 16px 34px -24px rgba(17,17,17,0.18); transition:transform .3s ease-out, box-shadow .3s ease-out;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:16px; color:#B77A32;">06</span>
+            <span style="width:20px; height:1px; background:#B77A32;"></span>
+          </div>
+          <h3 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:18px; margin:0 0 8px; letter-spacing:-0.01em;">Edição limitada</h3>
+          <p style="font-size:14px; line-height:1.6; color:#6b665f; margin:0;">Produção direcionada para projetos e ambientes selecionados.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- OFERTA -->
   <section id="oferta" style="scroll-margin-top:92px; max-width:1240px; margin:0 auto; padding:clamp(64px,9vw,140px) clamp(20px,3vw,40px);">
-    <div data-reveal="" style="border-radius:22px; overflow:hidden; background:{{ offerBg }}; color:#F7F1E8; border:1px solid rgba(183,122,50,0.18); box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.06), inset 0 0 0 1px rgba(183,122,50,0.14), 0 6px 16px rgba(0,0,0,0.2), 0 44px 110px -56px rgba(0,0,0,0.75);">
+    <div data-reveal style="border-radius:22px; overflow:hidden; background:#111111; color:#F7F1E8; border:1px solid rgba(183,122,50,0.18); box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.06), inset 0 0 0 1px rgba(183,122,50,0.14), 0 6px 16px rgba(0,0,0,0.2), 0 44px 110px -56px rgba(0,0,0,0.75);">
       <div style="display:flex; flex-wrap:wrap; gap:clamp(32px,4.5vw,72px); padding:clamp(40px,5.5vw,80px) clamp(30px,4.5vw,72px);">
         <div style="flex:1 1 380px; min-width:300px;">
           <div style="display:inline-flex; align-items:center; gap:10px; font-size:11px; font-weight:700; letter-spacing:0.3em; color:#E8D8C2; margin-bottom:28px;">
             <span style="width:24px; height:1px; background:#B77A32;"></span>OFERTA LIMITADA
           </div>
-          <h2 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(32px,4.4vw,54px); line-height:1.02; letter-spacing:-0.03em; margin:0 0 20px;">Entre na collab por <span style="color:#B77A32;">R$600,00</span></h2>
+          <h2 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(32px,4.4vw,54px); line-height:1.02; letter-spacing:-0.03em; margin:0 0 20px;">Entre na collab por <span style="color:#B77A32;">R$ 600,00</span></h2>
           <p style="font-size:17px; line-height:1.68; color:rgba(247,241,232,0.76); margin:0 0 38px; max-width:44ch;">Uma entrada exclusiva para quem quer levar a KV_COLLAB_BLING para um ambiente com personalidade, conteúdo e presença.</p>
-          <a href="{{ waHref }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 11px; background: #B77A32; color: #F7F1E8; font-weight: 700; font-size: 16px; padding: 18px 32px; border-radius: 10px; box-shadow: 0px 0px 30px -3px #FFD9A68E; transition: transform .25s ease-out, background .25s ease-out, box-shadow .25s ease-out" style-hover="background:#c98a3e; transform:translateY(-3px); box-shadow:0 20px 42px -14px rgba(0,0,0,0.6);">Quero reservar minha KV_COLLAB_BLING</a>
-          <p style="font-size:13.5px; color:rgba(247,241,232,0.5); margin:22px 0 0;">Atendimento direto: 51 99461-9162</p>
+          <a class="k-cta-offer" href="https://wa.me/5511945197063?text=Tenho%20interesse%20na%20KV_COLLAB_BLING" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:11px; background:#B77A32; color:#F7F1E8; font-weight:700; font-size:16px; padding:18px 32px; border-radius:10px; box-shadow:0px 0px 30px -3px #FFD9A68E; transition:transform .25s ease-out, background .25s ease-out, box-shadow .25s ease-out;">Quero reservar minha KV_COLLAB_BLING</a>
+          <p style="font-size:13.5px; color:rgba(247,241,232,0.5); margin:22px 0 0;">Atendimento direto: 55 11 94519-7063</p>
         </div>
         <div style="flex:1 1 300px; min-width:260px; display:flex; align-items:center;">
           <div style="width:100%; display:grid; gap:1px;">
-            <sc-for list="{{ offerItems }}" as="i" hint-placeholder-count="6">
-              <div style="display: flex; align-items: center; gap: 16px; padding: 16px 4px; border-bottom: 1px solid rgba(247,241,232,0.12); box-shadow: 0px 4px 12px 0px #945D5D26">
-                <span style="flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:#B77A32;"></span>
-                <span style="font-size:15.5px; font-weight:500; color:rgba(247,241,232,0.92);">{{ i }}</span>
-              </div>
-            </sc-for>
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 4px; border-bottom:1px solid rgba(247,241,232,0.12);">
+              <span style="flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:#B77A32;"></span>
+              <span style="font-size:15.5px; font-weight:500; color:rgba(247,241,232,0.92);">Peça de presença visual</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 4px; border-bottom:1px solid rgba(247,241,232,0.12);">
+              <span style="flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:#B77A32;"></span>
+              <span style="font-size:15.5px; font-weight:500; color:rgba(247,241,232,0.92);">Arte autoral aplicada</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 4px; border-bottom:1px solid rgba(247,241,232,0.12);">
+              <span style="flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:#B77A32;"></span>
+              <span style="font-size:15.5px; font-weight:500; color:rgba(247,241,232,0.92);">Revestimento preto em relevo 3D</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 4px; border-bottom:1px solid rgba(247,241,232,0.12);">
+              <span style="flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:#B77A32;"></span>
+              <span style="font-size:15.5px; font-weight:500; color:rgba(247,241,232,0.92);">Acabamento premium acessível</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 4px; border-bottom:1px solid rgba(247,241,232,0.12);">
+              <span style="flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:#B77A32;"></span>
+              <span style="font-size:15.5px; font-weight:500; color:rgba(247,241,232,0.92);">Atendimento direto via WhatsApp</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:16px; padding:16px 4px; border-bottom:1px solid rgba(247,241,232,0.12);">
+              <span style="flex:0 0 auto; width:6px; height:6px; border-radius:50%; background:#B77A32;"></span>
+              <span style="font-size:15.5px; font-weight:500; color:rgba(247,241,232,0.92);">Disponibilidade limitada</span>
+            </div>
           </div>
         </div>
       </div>
@@ -240,99 +324,66 @@
   </section>
 
   <!-- FINAL INSTITUCIONAL -->
-  <section id="contato" data-reveal="" style="scroll-margin-top:92px; max-width:960px; margin:0 auto; padding:clamp(56px,8vw,128px) clamp(20px,3vw,40px); text-align:center;">
+  <section id="contato" data-reveal style="scroll-margin-top:92px; max-width:960px; margin:0 auto; padding:clamp(56px,8vw,128px) clamp(20px,3vw,40px); text-align:center;">
     <h2 style="font-family:'Bricolage Grotesque', sans-serif; font-weight:700; font-size:clamp(30px,4.6vw,54px); line-height:1.03; letter-spacing:-0.03em; margin:0 auto 28px; max-width:18ch; text-wrap:balance;">A poltrona acompanha a identidade do espaço.</h2>
     <p style="font-size:clamp(16px,1.7vw,19px); line-height:1.72; color:#544f48; max-width:60ch; margin:0 auto 44px; text-wrap:pretty;">A KARV cria peças que reforçam atmosferas existentes. A KV_COLLAB_BLING foi pensada para ambientes que já têm linguagem própria e precisam de um ponto físico capaz de transformar presença em experiência.</p>
-    <a href="{{ waHref }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:12px; color:#111; font-weight:700; font-size:16px; padding-bottom:12px; border-bottom:1.5px solid #B77A32; transition:gap .18s ease;" style-hover="gap:16px;">Entrar na collab <span style="color:#B77A32;">→</span></a>
+    <a class="k-final" href="https://wa.me/5511945197063?text=Tenho%20interesse%20na%20KV_COLLAB_BLING" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:12px; color:#111; font-weight:700; font-size:16px; padding-bottom:12px; border-bottom:1.5px solid #B77A32; transition:gap .18s ease;">Entrar na collab <span style="color:#B77A32;">→</span></a>
   </section>
 
   <!-- FOOTER -->
   <footer style="border-top:1px solid rgba(138,129,120,0.2); background:#111; color:#F7F1E8;">
-    <div style="max-width: 1240px; margin: 0 auto; padding: clamp(40px,4.5vw,60px) clamp(20px,3vw,40px); display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between; position: relative">
+    <div style="max-width:1240px; margin:0 auto; padding:clamp(40px,4.5vw,60px) clamp(20px,3vw,40px); display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between; position:relative;">
       <div>
         <div style="font-family:'Cormorant Garamond', serif; font-weight:600; font-size:28px; letter-spacing:0.14em; color:#B77A32; line-height:1;">KARV</div>
         <div style="font-size:11px; letter-spacing:0.28em; color:rgba(247,241,232,0.45); margin-top:10px;">KV_COLLAB_BLING · EDIÇÃO LIMITADA</div>
       </div>
-      <div style="text-align:right;">
-        <a href="{{ waHref }}" target="_blank" rel="noopener" style="color:#F7F1E8; font-weight:700; font-size:15px; border-bottom:1px solid rgba(183,122,50,0.6); padding-bottom:4px;" style-hover="color:#E8D8C2;">Falar no WhatsApp</a>
-        <div style="font-size:13px; color:rgba(247,241,232,0.5); margin-top:12px;">55 011 94519 7063</div>
+      <div style="display:flex; align-items:center; gap:28px; flex-wrap:wrap; justify-content:flex-end;">
+        <div style="text-align:right;">
+          <a class="k-footwa" href="https://wa.me/5511945197063?text=Tenho%20interesse%20na%20KV_COLLAB_BLING" target="_blank" rel="noopener noreferrer" style="color:#F7F1E8; font-weight:700; font-size:15px; border-bottom:1px solid rgba(183,122,50,0.6); padding-bottom:4px; transition:color .18s ease;">Falar no WhatsApp</a>
+          <div style="font-size:13px; color:rgba(247,241,232,0.5); margin-top:12px;">55 11 94519-7063</div>
+        </div>
+        <a id="karv-qr" class="k-qr" href="https://www.instagram.com/karv.dna/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @karv.dna" title="@karv.dna" style="display:block; width:110px; height:110px; background:#fff; border-radius:10px; padding:8px; box-sizing:border-box; box-shadow:0 6px 18px -8px rgba(0,0,0,0.5); transition:transform .25s ease-out; will-change:transform;"><img src="./karv-dna_qr-1--mrcl7uvu.png" alt="QR code para o Instagram @karv.dna" style="width:100%; height:100%; display:block; object-fit:contain;"></a>
       </div>
-    <a href="https://www.instagram.com/karv.dna/" target="_blank" rel="noopener" aria-label="Instagram @karv.dna" title="@karv.dna" style="position:absolute; left:542px; top:23px; display:block; width:123px; height:122px; background:#fff; border-radius:10px; padding:8px; box-sizing:border-box; z-index:0; box-shadow:0 6px 18px -8px rgba(0,0,0,0.5); transition:transform .25s ease-out; will-change:transform;" style-hover="transform:translateY(-3px);"><img src="./karv-dna_qr-1--mrcl7uvu.png" alt="QR code para o Instagram @karv.dna" style="width:100%; height:100%; display:block; object-fit:contain;"></a></div>
+    </div>
   </footer>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:720},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;5551994619162&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contato&quot;},&quot;offerTone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;preto&quot;,&quot;options&quot;:[&quot;preto&quot;,&quot;grafite&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Estilo&quot;}}">
-class Component extends DCLogic {
-  componentDidMount() {
-    const vid = document.getElementById("karv-bg-video");
+
+<script>
+  (function () {
+    // Background video: always muted, looping, playing — no audio ever.
+    var vid = document.getElementById("karv-bg-video");
     if (vid) {
-      vid.loop = true;
-      const silence = () => { vid.muted = true; vid.defaultMuted = true; vid.volume = 0; vid.setAttribute("muted", ""); };
-      const kick = () => { silence(); vid.loop = true; const p = vid.play(); if (p && p.catch) p.catch(() => {}); };
+      var silence = function () { vid.muted = true; vid.defaultMuted = true; vid.volume = 0; vid.setAttribute("muted", ""); };
+      var kick = function () { silence(); vid.loop = true; var p = vid.play(); if (p && p.catch) p.catch(function () {}); };
       silence();
       kick();
       vid.addEventListener("canplay", kick, { once: true });
       vid.addEventListener("play", silence);
-      vid.addEventListener("volumechange", () => { if (!vid.muted || vid.volume > 0) silence(); });
-      vid.addEventListener("ended", () => { vid.currentTime = 0; kick(); });
-      document.addEventListener("visibilitychange", () => { if (!document.hidden) kick(); });
+      vid.addEventListener("volumechange", function () { if (!vid.muted || vid.volume > 0) silence(); });
+      vid.addEventListener("ended", function () { vid.currentTime = 0; kick(); });
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) kick(); });
     }
-    if (typeof IntersectionObserver === "undefined") return;
-    const run = () => {
-      document.querySelectorAll("[data-reveal-group]").forEach((g) => {
-        Array.from(g.querySelectorAll("[data-reveal]")).forEach((k, i) => {
-          k.style.transitionDelay = Math.min(i, 8) * 75 + "ms";
-        });
-      });
-      const els = Array.from(document.querySelectorAll("[data-reveal]"));
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
+    // Also enforce mute on the process video.
+    document.querySelectorAll("video").forEach(function (v) { v.muted = true; v.setAttribute("muted", ""); var p = v.play && v.play(); if (p && p.catch) p.catch(function () {}); });
+
+    // Scroll reveal
+    if (typeof IntersectionObserver === "undefined") {
+      document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("is-in"); });
+      return;
+    }
+    var run = function () {
+      var els = Array.prototype.slice.call(document.querySelectorAll("[data-reveal]"));
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
           if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
         });
       }, { threshold: 0.12, rootMargin: "0px 0px -7% 0px" });
-      els.forEach((el) => io.observe(el));
+      els.forEach(function (el) { io.observe(el); });
     };
-    requestAnimationFrame(() => requestAnimationFrame(run));
-  }
-  renderVals() {
-    const num = this.props.whatsappNumber ?? "5551994619162";
-    const waHref = "https://wa.me/" + num.replace(/\D/g, "") +
-      "?text=" + encodeURIComponent("Olá! Quero entrar na collab KV_COLLAB_BLING (R$600,00).");
-    const tone = this.props.offerTone ?? "preto";
-    const offerBg = tone === "grafite" ? "#242424" : "#111111";
-    return {
-      waHref,
-      offerBg,
-      audiences: [
-        { num: "01", title: "Barbearias", desc: "Ambientes com estética própria e atendimento de presença." },
-        { num: "02", title: "Studios de tattoo", desc: "Espaços onde arte, permanência e identidade já fazem parte da experiência." },
-        { num: "03", title: "Creators", desc: "Cenários que precisam render imagem, vídeo e reconhecimento." },
-        { num: "04", title: "Lounges", desc: "Áreas de espera com conforto, impacto e memória visual." },
-        { num: "05", title: "Lojas conceito", desc: "Pontos de venda onde o mobiliário também comunica posicionamento." },
-        { num: "06", title: "Eventos", desc: "Ambientes temporários que precisam marcar presença rapidamente." },
-      ],
-      details: [
-        { img: "assets/dragao-lateral.jpg", cat: "ARTE AUTORAL", num: "01", title: "Arte lateral", desc: "Dragão autoral aplicado como elemento gráfico de presença." },
-        { img: "assets/textura-clean.jpg", cat: "MATÉRIA · ESCAMAS", num: "02", title: "Textura 3D inspirada em escamas", desc: "O revestimento preto em relevo tridimensional estabelece uma conexão visual sutil com a escama do dragão, ampliando a força da peça com sofisticação e coerência material." },
-        { img: "assets/vista-45.jpg", cat: "FORMA", num: "03", title: "Vista 45°", desc: "Volume robusto, braços amplos e silhueta de presença." },
-      ],
-      specs: [
-        { num: "04", title: "Acabamento contrastante", desc: "Filetes em tom quente que reforçam profundidade visual." },
-        { num: "05", title: "Base sólida", desc: "Pés pretos discretos, mantendo estabilidade e peso visual." },
-        { num: "06", title: "Edição limitada", desc: "Produção direcionada para projetos e ambientes selecionados." },
-      ],
-      offerItems: [
-        "Peça de presença visual",
-        "Arte autoral aplicada",
-        "Revestimento preto em relevo 3D",
-        "Acabamento premium acessível",
-        "Atendimento direto via WhatsApp",
-        "Disponibilidade limitada",
-      ],
-    };
-  }
-}
+    requestAnimationFrame(function () { requestAnimationFrame(run); });
+  })();
 </script>
+
 </body>
 </html>
